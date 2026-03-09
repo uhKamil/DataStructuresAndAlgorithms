@@ -1,24 +1,33 @@
 package dsaa.lab01;
 
 public class Drawer {
-	public static void drawLine(int n1, int n2, char ch1, char ch2) {
-		if (n1 >= n2) {
+	public static void drawLine(int n, char ch) {
+		for (int i = 1; i <= n; i++) System.out.print(ch);
+	}
 
-		} else {
-			for (int i = 1; i <= n1; i++) System.out.print(ch1);
+	public static void drawPyramid(int n) {
+        drawPartPyramid(n, n);
+	}
+
+	static void drawPartPyramid(int n, int size) {
+		int d = n - 1; // dot segment initial length
+		int x = 1;   // X segment initial length
+
+		for (int i = 1; i <= size; i++) {
+			drawLine(d, '.');
+			drawLine(x, 'X');
+			drawLine(d, '.');
+			d -= 1;
+			x += 2;
+			if (i < size) System.out.print('\n');
 		}
 	}
 
-
-	public static void drawPyramid(int n) {
-		// TODO
-
-	}
-
-	
 	public static void drawChristmassTree(int n) {
-		// TODO
-
+		for (int i = 1; i <= n; i++) {
+			drawPartPyramid(n, i);
+			if (i < n) System.out.print('\n');
+		}
 	}
 
 }
