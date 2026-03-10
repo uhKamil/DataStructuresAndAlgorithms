@@ -19,7 +19,7 @@ public class Main {
 	 *   halt program and finish execution
 	 * @param args
 	 */
-	
+
 
 	public static void main(String[] args) {
 		System.out.println("START");
@@ -53,7 +53,7 @@ public class Main {
 				halt=true;
 				continue;
 			}
-			System.out.println("Wrong command");			
+			System.out.println("Wrong command");
 		}
 		System.out.println("END OF EXECUTION");
 		scan.close();

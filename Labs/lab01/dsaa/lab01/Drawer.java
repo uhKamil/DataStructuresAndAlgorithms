@@ -11,7 +11,7 @@ public class Drawer {
 
 	static void drawPartPyramid(int n, int size) {
 		int d = n - 1; // dot segment initial length
-		int x = 1;   // X segment initial length
+		int x = 1;     // X segment initial length
 
 		for (int i = 1; i <= size; i++) {
 			drawLine(d, '.');
@@ -19,14 +19,13 @@ public class Drawer {
 			drawLine(d, '.');
 			d -= 1;
 			x += 2;
-			if (i < size) System.out.print('\n');
+			System.out.println();
 		}
 	}
 
 	public static void drawChristmassTree(int n) {
 		for (int i = 1; i <= n; i++) {
 			drawPartPyramid(n, i);
-			if (i < n) System.out.print('\n');
 		}
 	}
 
