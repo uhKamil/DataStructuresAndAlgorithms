@@ -1,0 +1,12 @@
+go 1
+ld orbit
+link=module_a link=module_b link=module_c link=module_d
+eod
+show
+rem module_c
+show
+index module_d
+index module_x
+rem module_a
+show
+ha

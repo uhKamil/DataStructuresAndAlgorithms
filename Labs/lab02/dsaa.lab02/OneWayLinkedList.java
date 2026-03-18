@@ -65,12 +65,7 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public boolean add(E e) {
-        Element current = sentinel;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = new Element(e);
-        size++;
+        add(size, e);
         return true;
     }
 

@@ -1,0 +1,13 @@
+go 2
+ch 0
+ld test1
+link=saturn link=jupiter
+eod
+show
+addi 5 link=error
+remi 10
+addi 0 link=earth
+show
+remi 0
+show
+ha

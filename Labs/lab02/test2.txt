@@ -1,0 +1,8 @@
+go 1
+ld dirty_text
+   link=Apollo_11 link=link=yes link=123zly_link link=goodlink   link=houston_we_have_a_problem!
+some random words here link=moon eod but its after eod
+eod
+show
+size
+ha
