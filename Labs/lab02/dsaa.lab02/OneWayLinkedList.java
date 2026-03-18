@@ -19,21 +19,24 @@ public class OneWayLinkedList<E> implements IList<E> {
     int size = 0;
 
     private class InnerIterator implements Iterator<E> {
-        // TODO
+        Element current;
+
         public InnerIterator() {
-            // TODO
+            current = sentinel;
         }
 
         @Override
         public boolean hasNext() {
-            // TODO
-            return false;
+            return current.next != null;
         }
 
         @Override
         public E next() {
-            // TODO
-            return null;
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            current = current.next;
+            return current.object;
         }
     }
 
@@ -51,6 +54,15 @@ public class OneWayLinkedList<E> implements IList<E> {
         throw new UnsupportedOperationException();
     }
 
+    private Element getElement(int index) throws NoSuchElementException {
+        if (index < 0 || index >= size) throw new NoSuchElementException();
+        Element current = sentinel.next;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current;
+    }
+
     @Override
     public boolean add(E e) {
         Element current = sentinel;
@@ -62,19 +74,17 @@ public class OneWayLinkedList<E> implements IList<E> {
         return true;
     }
 
-    private Element getElement(int index) throws NoSuchElementException {
-        if (index < 0 || index >= size) throw new NoSuchElementException();
-        Element current = sentinel.next;
+    @Override
+    public void add(int index, E element) throws NoSuchElementException {
+        if (index < 0 || index > size) throw new NoSuchElementException();
+        Element current = sentinel;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
-        return current;
-    }
-
-    @Override
-    public void add(int index, E element) throws NoSuchElementException {
-        // TODO Auto-generated method stub
-        // tu jeszcze do konca nie wiem co zrobic
+        Element node = new Element(element);
+        node.next = current.next;
+        current.next = node;
+        size++;
     }
 
     @Override
@@ -90,26 +100,27 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public E get(int index) throws NoSuchElementException {
-//        int i = 0;
-//        Element current = sentinel;
-//        while (current.next != null && i != index + 1) {
-//            current = current.next;
-//            i++;
-//        }
-//        return current.object;
         return getElement(index).object;
     }
 
     @Override
     public E set(int index, E element) throws NoSuchElementException {
-        // TODO Auto-generated method stub
-        return null;
+        Element e = getElement(index);
+        E old = e.object;
+        e.object = element;
+        return old;
     }
 
     @Override
     public int indexOf(E element) {
-        // TODO Auto-generated method stub
-        return 0;
+        Element current = sentinel.next;
+        for (int i = 0; i < size; i++) {
+            if (element == current.object || (element != null && element.equals(current.object))) {
+                return i;
+            }
+            current = current.next;
+        }
+        return -1;
     }
 
     @Override
@@ -119,13 +130,32 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public E remove(int index) throws NoSuchElementException {
-        // TODO Auto-generated method stub
-        return null;
+        if (index < 0 || index >= size) throw new NoSuchElementException();
+        Element current = sentinel;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        E removed = current.next.object;
+        current.next = current.next.next; // !!
+        size--;
+//        return null;
+        return removed;
     }
 
     @Override
     public boolean remove(E e) {
-        // TODO Auto-generated method stub
+        Element previous = sentinel;
+        Element current = sentinel.next;
+
+        while (current != null) {
+            if (e == current.object || (e != null && e.equals(current.object))) {
+                previous.next = current.next;
+                size--;
+                return true;
+            }
+            previous = current;
+            current = current.next;
+        }
         return false;
     }
 
