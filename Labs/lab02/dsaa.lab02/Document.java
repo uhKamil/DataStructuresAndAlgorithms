@@ -27,7 +27,7 @@ public class Document {
 					String linkRef = word.substring(5);
 
 					if (correctLink(linkRef)) {
-						links.add(new Link(linkRef.toLowerCase()));
+						links.add(new Link(linkRef));
 					}
 				}
 			}
