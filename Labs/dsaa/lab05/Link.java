@@ -1,5 +1,7 @@
 package dsaa.lab05;
 
+import java.util.Objects;
+
 public class Link implements Comparable<Link> {
     public String ref;
     public int weight;
@@ -16,8 +18,12 @@ public class Link implements Comparable<Link> {
 
     @Override
     public boolean equals(Object obj) {
-        //TODO
-        return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Link other = (Link) obj;
+
+        return Objects.equals(this.ref, other.ref);
     }
 
     @Override
@@ -27,8 +33,7 @@ public class Link implements Comparable<Link> {
 
     @Override
     public int compareTo(Link another) {
-        //TODO
-        return 0;
+        return this.ref.compareTo(another.ref);
     }
 }
 
