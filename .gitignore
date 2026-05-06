@@ -1,0 +1,33 @@
+### IDEs ###
+.idea/
+.vscode/
+*.iml
+out/
+bin/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Compiler-generated files
+!**/src/main/**/out/
+!**/src/test/**/out/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### System & Languages ###
+.DS_Store
+.kotlin
+
+### Project Specific ###
+/Lectures/
+/Classes/
+/lib/
